@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 4.1.0)
+project(raylib-project)
+
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
+
+set(PROJECT_INSTALL_VENDOR_DIR ${CMAKE_INSTALL_PREFIX}/vendor)
+set(PROJECT_INSTALL_BIN_DIR ${CMAKE_INSTALL_PREFIX}/bin)
+set(PROJECT_INSTALL_LIB_DIR ${CMAKE_INSTALL_PREFIX}/lib)
+
+include_directories(${PROJECT_INSTALL_VENDOR_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/src)
+
+add_subdirectory(src)
+# add_subdirectory(tests) # Uncomment to enable tests
