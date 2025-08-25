@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.1.0)
-project(raylib-project)
+project(Tetris-Project)
 
 
 set(CMAKE_CXX_STANDARD 20)
