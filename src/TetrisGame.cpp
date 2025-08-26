@@ -13,6 +13,20 @@ void TetrisGame::Draw() {
     m_CurrentBlock.Draw();
 }
 
+void TetrisGame::HandleInput() {
+    switch(GetKeyPressed()) {
+    case KEY_LEFT:
+        m_CurrentBlock.Move(0,-1);
+        break;
+    case KEY_RIGHT:
+        m_CurrentBlock.Move(0,1);
+        break;
+    case KEY_DOWN:
+        m_CurrentBlock.Move(1,0);
+        break;
+    }
+}
+
 std::vector<Block> TetrisGame::GetAllBlocks() {
     return { IBlock(), SBlock(), ZBlock(), TBlock(), LBlock(), JBlock(), OBlock() };
 }

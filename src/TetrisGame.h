@@ -18,8 +18,9 @@ public:
     TetrisGame();
 
     void Draw();
+    void HandleInput();
+
     std::vector<Block> GetAllBlocks();
-    
     Block GetRandomBlock();
 
 private:

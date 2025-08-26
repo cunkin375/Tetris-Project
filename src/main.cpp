@@ -13,6 +13,7 @@ int main() {
     TetrisGame Game; 
     while (!WindowShouldClose()) {
         BeginDrawing();
+            Game.HandleInput();
             ClearBackground(BackgroundColor);
             Game.Draw();
         EndDrawing(); 
