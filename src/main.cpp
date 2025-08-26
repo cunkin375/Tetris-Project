@@ -1,5 +1,6 @@
-#include "Grid.h"
-#include "Blocks.h"
+#include "TetrisGame.h"
+#include "ColorHandler.h"
+
 #include <raylib.h>
 
 #define SCREEN_WIDTH 300 
@@ -8,15 +9,13 @@
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib Tetris"); 
     SetTargetFPS(144);
-    Grid grid;
-    grid.Print();
-    TBlock block;
+    Color BackgroundColor = ColorHandler::Get(DarkBlue);
+    TetrisGame Game; 
     while (!WindowShouldClose()) {
         BeginDrawing();
-            ClearBackground(grid.GetBackgroundColor());
-            grid.Draw();
-            block.Draw();
-        EndDrawing();
+            ClearBackground(BackgroundColor);
+            Game.Draw();
+        EndDrawing(); 
     }
     CloseWindow();
 }
