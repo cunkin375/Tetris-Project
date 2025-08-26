@@ -8,7 +8,7 @@
 #define CELL_SIZE 30
 
 struct Cell {
-    uint16_t Value;
+    uint32_t Value;
     Color Color;
 };
 
