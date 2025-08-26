@@ -1,12 +1,13 @@
 #pragma once
+
+#include "Constants.h"
 #include "ColorHandler.h"
+
 #include <raylib.h>
 #include <cstdint>
 #include <array>
 #include <map>
 
-#define TETROMINO 4
-#define POSITION_COUNT 4
 
 struct Position {
     uint32_t Row;
@@ -15,6 +16,7 @@ struct Position {
     Position(uint32_t Row, uint32_t Col) : Row(Row), Col(Col) {}
 };
 
+// Parent Class
 class Block {
 public:
     Block();
@@ -35,6 +37,7 @@ private:
 
 };
 
+// Child Classes
 class IBlock : public Block {
 public:
     IBlock() {
