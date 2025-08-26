@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-//  PUBLIC METHODS
 /* Grid Constructor:
  * ---------------------------------------------------------------------------
  * Initializes the grid with default values and sets the background Color.
