@@ -71,3 +71,14 @@ public:
         CellPositions[3] = { Position{0,0}, Position{0,1}, Position{1,1}, Position{2,1} };
     }
 };
+
+class SQBlock : public Block {
+public:
+    SQBlock() {
+        Color = ColorHandler::Get(Yellow);
+        CellPositions[0] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
+        CellPositions[1] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
+        CellPositions[2] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
+        CellPositions[3] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
+    }
+};

@@ -1,6 +1,11 @@
 #pragma once
 #include <raylib.h>
 
+/* Colors Enum:
+ * ---------------------------------------------------------------------------
+ * Enumeration of predefined colors used in the Tetris game.
+ * Each color corresponds to a specific RGBA value defined in ColorHandler.
+ * --------------------------------------------------------------------------- */
 enum Colors {
     DarkGray,
     DarkBlue,
@@ -13,6 +18,12 @@ enum Colors {
     Blue
 };
 
+/* ColorHandler Class:
+ * ---------------------------------------------------------------------------
+ * Static class that provides a method to get predefined colors.
+ * Each color is represented as a struct with RGBA values.
+ * Color struct comes from raylib.h
+ * --------------------------------------------------------------------------- */
 class ColorHandler {
 public:
     static inline Color Get(Colors color) {
