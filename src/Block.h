@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defaults.h"
+#include "Constants.h"
 #include "ColorHandler.h"
 
 #include <raylib.h>
@@ -24,10 +24,10 @@ public:
     void Draw();
     void Move(int32_t RowOffset, int32_t ColOffset);
     
-    std::array<Position, Default::PositionCount> GetCellPositions();
+    std::array<Position, POSITION_COUNT> GetCellPositions();
 
 public:
-    std::map<uint32_t, std::array<Position, Default::PositionCount>> CellPositions;
+    std::map<uint32_t, std::array<Position, POSITION_COUNT>> CellPositions;
     Color Color;
 
 private:
@@ -67,7 +67,7 @@ public:
 class ZBlock : public Block {
 public:
     ZBlock() {
-        Color = ColorHandler::Get(Red); 
+        Color = ColorHandler::Get(Red);
         CellPositions[0] = { Position{0,0}, Position{0,1}, Position{1,1}, Position{1,2} };
         CellPositions[1] = { Position{0,2}, Position{1,1}, Position{1,2}, Position{2,1} };
         CellPositions[2] = { Position{0,0}, Position{0,1}, Position{1,1}, Position{1,2} };

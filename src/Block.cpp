@@ -8,10 +8,10 @@ Block::Block()
 }
 
 void Block::Draw() {
-    std::array<Position, Default::PositionCount> CurrentPositions = GetCellPositions(); 
+    std::array<Position, POSITION_COUNT> CurrentPositions = GetCellPositions(); 
     for(const Position& Pos : CurrentPositions)
-        DrawRectangle(Pos.Col * Default::CellSize + 1, Pos.Row * Default::CellSize + 1,
-                      Default::CellSize - 1, Default::CellSize - 1, Color);
+        DrawRectangle(Pos.Col * CELL_SIZE + 1, Pos.Row * CELL_SIZE + 1,
+                      CELL_SIZE - 1, CELL_SIZE - 1, Color);
 }
 
 void Block::Move(int32_t RowOffset, int32_t ColOffset) {
@@ -19,10 +19,10 @@ void Block::Move(int32_t RowOffset, int32_t ColOffset) {
     m_ColOffset += ColOffset;
 }
 
-std::array<Position, Default::PositionCount> Block::GetCellPositions() {
-    std::array<Position, Default::PositionCount> ActiveTiles = CellPositions[m_RotationState];
-    std::array<Position, Default::PositionCount> NewTiles;
-    for (size_t i = 0; i < Default::PositionCount; ++i)
+std::array<Position, POSITION_COUNT> Block::GetCellPositions() {
+    std::array<Position, POSITION_COUNT> ActiveTiles = CellPositions[m_RotationState];
+    std::array<Position, POSITION_COUNT> NewTiles;
+    for (size_t i = 0; i < POSITION_COUNT; ++i)
         NewTiles[i] = Position(ActiveTiles[i].Row + m_RowOffset, ActiveTiles[i].Col + m_ColOffset);
     return NewTiles;
 }

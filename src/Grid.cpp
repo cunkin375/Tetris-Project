@@ -1,6 +1,5 @@
 #include "Grid.h"
 #include "ColorHandler.h"
-
 #include <iostream>
 
 /* Grid Constructor:
@@ -10,8 +9,8 @@
  * a default Color and value.
  * --------------------------------------------------------------------------- */
 Grid::Grid() {
-    for (size_t Row = 0; Row < Default::MaxGridRows; ++Row) {
-        for (size_t Col = 0; Col < Default::MaxGridCols; ++Col) {
+    for (size_t Row = 0; Row < GRID_ROWS; ++Row) {
+        for (size_t Col = 0; Col < GRID_COLS; ++Col) {
             m_Grid[Row][Col].Color = ColorHandler::Get(DarkGray);
             m_Grid[Row][Col].Value = 0;
         } 
@@ -19,19 +18,19 @@ Grid::Grid() {
 }
 
 void Grid::Print() {
-    for (size_t Row = 0; Row < Default::MaxGridRows; ++Row)  {
-        for (size_t Col = 0; Col < Default::MaxGridCols; ++Col) {
+    for (size_t Row = 0; Row < GRID_ROWS; ++Row)  {
+        for (size_t Col = 0; Col < GRID_COLS; ++Col) {
             std::cout << m_Grid[Row][Col].Value << " "; }
         std::cout << std::endl;
     }
 }
 
 void Grid::Draw() {
-    for (size_t Row = 0; Row < Default::MaxGridRows; ++Row) {
-        for (size_t Col = 0; Col < Default::MaxGridCols; ++Col) {
+    for (size_t Row = 0; Row < GRID_ROWS; ++Row) {
+        for (size_t Col = 0; Col < GRID_COLS; ++Col) {
             Cell ActiveCell = m_Grid[Row][Col]; 
-            DrawRectangle(Col * Default::CellSize + 1, Row * Default::CellSize + 1,
-                          Default::CellSize - 1, Default::CellSize - 1, 
+            DrawRectangle(Col * CELL_SIZE + 1, Row * CELL_SIZE + 1,
+                          CELL_SIZE - 1, CELL_SIZE - 1, 
                           ActiveCell.Color);
         }
     }

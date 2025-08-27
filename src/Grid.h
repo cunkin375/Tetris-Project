@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defaults.h"
+#include "Constants.h"
 
 #include <cstdint>
 #include <vector>
@@ -25,6 +25,6 @@ private:
     void Initialize();
 
 private:
-    Cell m_Grid[Default::MaxGridRows][Default::MaxGridCols];
+    Cell m_Grid[GRID_ROWS][GRID_COLS];
 
 };
