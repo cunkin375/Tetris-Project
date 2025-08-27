@@ -25,6 +25,6 @@ private:
     void Initialize();
 
 private:
-    Cell m_Grid[GRID_ROWS][GRID_COLS];
+    Cell m_Grid[g_MaxGridRows][g_MaxGridCols];
 
 };

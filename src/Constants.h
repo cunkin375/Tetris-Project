@@ -1,8 +1,6 @@
 #pragma once
 
-constexpr size_t GRID_ROWS = 20;
-constexpr size_t GRID_COLS = 10;
-constexpr size_t CELL_SIZE = 30;
-constexpr size_t BLOCK_TYPES = 7;
-constexpr size_t TETROMINO = 4;
-constexpr size_t POSITION_COUNT = 4;
+constexpr size_t g_MaxGridRows = 20;
+constexpr size_t g_MaxGridCols = 10;
+constexpr size_t g_CellSize = 30;
+constexpr size_t g_PositionCount = 4;

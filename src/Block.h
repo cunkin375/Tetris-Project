@@ -24,10 +24,10 @@ public:
     void Draw();
     void Move(int32_t RowOffset, int32_t ColOffset);
     
-    std::array<Position, POSITION_COUNT> GetCellPositions();
+    std::array<Position, g_PositionCount> GetCellPositions();
 
 public:
-    std::map<uint32_t, std::array<Position, POSITION_COUNT>> CellPositions;
+    std::map<uint32_t, std::array<Position, g_PositionCount>> CellPositions;
     Color Color;
 
 private:
