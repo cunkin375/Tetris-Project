@@ -9,12 +9,6 @@ FetchContent_Declare(
     GIT_TAG 5.5)
 FetchContent_MakeAvailable(raylib)
 
-set(SOURCE_FILES
-    main.cpp
-    Block.cpp
-    Grid.cpp
-    TetrisGame.cpp)
-
 set(HEADER_FILES
     Block.h
     ColorHandler.h
@@ -22,6 +16,12 @@ set(HEADER_FILES
     Grid.h
     Position.h
     TetrisGame.h)
+
+set(SOURCE_FILES
+    main.cpp
+    Block.cpp
+    Grid.cpp
+    TetrisGame.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
