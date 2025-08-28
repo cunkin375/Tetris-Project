@@ -21,25 +21,30 @@ void TetrisGame::HandleInput() {
     switch(GetKeyPressed()) {
     case KEY_LEFT:
         m_CurrentBlock.Move(0,-1);
-        if (IsBlockOutside()) m_CurrentBlock.Move(0,1);
+        if (IsBlockOutside() || !BlockFits) m_CurrentBlock.Move(0,1);
         break;
     case KEY_RIGHT:
         m_CurrentBlock.Move(0,1);
-        if (IsBlockOutside()) m_CurrentBlock.Move(0,-1);
+        if (IsBlockOutside() || !BlockFits) m_CurrentBlock.Move(0,-1);
         break;
     case KEY_DOWN:
         MoveBlockDown();
         break;
     case KEY_UP:
         m_CurrentBlock.RotateClockwise();
-        if (IsBlockOutside()) m_CurrentBlock.RotateCounterClockwise();
+        if (IsBlockOutside() || !BlockFits) 
+            m_CurrentBlock.RotateCounterClockwise();
     }
 }
 
+// Private Methods
 
 void TetrisGame::MoveBlockDown() {
     m_CurrentBlock.Move(1,0);
-    if (IsBlockOutside()) m_CurrentBlock.Move(-1,0);
+    if (IsBlockOutside() || !BlockFits) {
+        m_CurrentBlock.Move(-1,0);
+        LockBlock();
+    }
 }
 
 void TetrisGame::LockBlock() {
@@ -48,6 +53,22 @@ void TetrisGame::LockBlock() {
         m_Grid.SetCell(Pos.Row, Pos.Col, m_CurrentBlock.Color);
     m_CurrentBlock = m_NextBlock;
     m_NextBlock = GetRandomBlock();
+}
+
+bool TetrisGame::BlockFits() {
+    std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();
+    for (Position Pos : ActiveTiles)
+        if (m_Grid.GetCell(Pos.Row, Pos.Col).IsActive)
+            return false;
+    return true;
+}
+
+bool TetrisGame::IsBlockOutside()  {
+    std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();
+    for (Position Pos : ActiveTiles)
+        if (m_Grid.IsCellOutside(Pos.Row, Pos.Col)) 
+            return true;
+    return false;
 }
 
 std::vector<Block> TetrisGame::GetAllBlocks() {
@@ -61,14 +82,4 @@ Block TetrisGame::GetRandomBlock() {
     Block SelectedBlock = m_Blocks[Index];
     m_Blocks.erase(m_Blocks.begin() + Index);
     return SelectedBlock; 
-}
-
-// Private Methods
-
-bool TetrisGame::IsBlockOutside()  {
-    std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();
-    for (Position Pos : ActiveTiles)
-        if (m_Grid.IsCellOutside(Pos.Row, Pos.Col)) 
-            return true;
-    return false;
 }

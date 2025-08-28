@@ -19,14 +19,15 @@ public:
 
     void Update();
     void HandleInput();
+
+private:
     void MoveBlockDown();
     void LockBlock();
+    bool BlockFits();
+    bool IsBlockOutside();
 
     std::vector<Block> GetAllBlocks();
     Block GetRandomBlock();
-
-private:
-    bool IsBlockOutside();
 
 private:
     Grid m_Grid;
