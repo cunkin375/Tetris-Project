@@ -19,9 +19,10 @@ public:
 
     void Update();
     void HandleInput();
+    void MoveBlockDown();
+    bool EventTriggered(double_t Interval);
 
 private:
-    void MoveBlockDown();
     void LockBlock();
     bool BlockFits();
     bool IsBlockOutside();
@@ -30,6 +31,7 @@ private:
     Block GetRandomBlock();
 
 private:
+    double_t m_LastUpdateTime;
     Grid m_Grid;
     Block m_CurrentBlock;
     Block m_NextBlock;

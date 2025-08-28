@@ -5,7 +5,8 @@
 // Public Methods
 
 TetrisGame::TetrisGame()
-    : m_Grid()
+    : m_LastUpdateTime(0.0)
+    , m_Grid()
     , m_Blocks(GetAllBlocks())
 {
     m_CurrentBlock = GetRandomBlock();
@@ -36,7 +37,14 @@ void TetrisGame::HandleInput() {
     }
 }
 
-// Private Methods
+bool TetrisGame::EventTriggered(double_t Interval) {
+    double_t CurrentTime = GetTime();
+    if (CurrentTime - m_LastUpdateTime >= Interval) {
+        m_LastUpdateTime = CurrentTime;
+        return true;
+    } 
+    return false;
+}
 
 void TetrisGame::MoveBlockDown() {
     m_CurrentBlock.Move(1,0);
@@ -46,6 +54,8 @@ void TetrisGame::MoveBlockDown() {
         m_Grid.ClearFullRows();
     }
 }
+
+// Private Methods
 
 void TetrisGame::LockBlock() {
     std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();

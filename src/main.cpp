@@ -11,6 +11,7 @@ int main() {
     while (!WindowShouldClose()) {
         BeginDrawing();
             Game.HandleInput();
+            if (Game.EventTriggered(0.5)) Game.MoveBlockDown();
             ClearBackground(BackgroundColor);
             Game.Update();
         EndDrawing(); 
