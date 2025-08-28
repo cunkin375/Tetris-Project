@@ -21,19 +21,18 @@ void TetrisGame::HandleInput() {
     switch(GetKeyPressed()) {
     case KEY_LEFT:
         m_CurrentBlock.Move(0,-1);
-        if (IsBlockOutside() || !BlockFits) m_CurrentBlock.Move(0,1);
+        if (IsBlockOutside() || !BlockFits()) m_CurrentBlock.Move(0,1);
         break;
     case KEY_RIGHT:
         m_CurrentBlock.Move(0,1);
-        if (IsBlockOutside() || !BlockFits) m_CurrentBlock.Move(0,-1);
+        if (IsBlockOutside() || !BlockFits()) m_CurrentBlock.Move(0,-1);
         break;
     case KEY_DOWN:
         MoveBlockDown();
         break;
     case KEY_UP:
         m_CurrentBlock.RotateClockwise();
-        if (IsBlockOutside() || !BlockFits) 
-            m_CurrentBlock.RotateCounterClockwise();
+        if (IsBlockOutside() || !BlockFits()) m_CurrentBlock.RotateCounterClockwise();
     }
 }
 
@@ -41,9 +40,10 @@ void TetrisGame::HandleInput() {
 
 void TetrisGame::MoveBlockDown() {
     m_CurrentBlock.Move(1,0);
-    if (IsBlockOutside() || !BlockFits) {
+    if (IsBlockOutside() || !BlockFits()) {
         m_CurrentBlock.Move(-1,0);
         LockBlock();
+        m_Grid.ClearFullRows();
     }
 }
 

@@ -2,12 +2,8 @@
 #include "ColorHandler.h"
 #include <iostream>
 
-/* Grid Constructor:
- * ---------------------------------------------------------------------------
- * Initializes the grid with default values and sets the background Color.
- * The grid is represented as a 2D array of Cells, each initialized to
- * a default Color and Active boolean.
- * --------------------------------------------------------------------------- */
+// Public Methods
+
 Grid::Grid() {
     for (size_t Row = 0; Row < g_MaxGridRows; ++Row) {
         for (size_t Col = 0; Col < g_MaxGridCols; ++Col) {
@@ -22,6 +18,17 @@ void Grid::Print() {
         for (size_t Col = 0; Col < g_MaxGridCols; ++Col) {
             std::cout << m_Grid[Row][Col].IsActive << " "; }
         std::cout << std::endl;
+    }
+}
+void Grid::ClearFullRows() { size_t FullRowCount = 0;
+    for (int32_t Row = g_MaxGridRows - 1; Row >= 0; --Row) {
+        if (IsRowFull(Row)) {
+            ClearRow(Row);
+            ++FullRowCount;
+        } else if (FullRowCount > 0) {
+            MoveRowsDown(Row, FullRowCount);
+            Row += FullRowCount; // Recheck this row after moving down
+        }
     }
 }
 
@@ -39,4 +46,24 @@ void Grid::Draw() {
 bool Grid::IsCellOutside(size_t Row, size_t Col) {
     return (!(Row >= 0 && Row < g_MaxGridRows &&
               Col >= 0 && Col < g_MaxGridCols));
+}
+
+// Private Methods
+
+void Grid::ClearRow(size_t Row) {
+    for (size_t Col = 0; Col < g_MaxGridCols; ++Col)
+        m_Grid[Row][Col] = Cell{false, ColorHandler::Get(TETRIS_DARK_GRAY)};
+}
+
+void Grid::MoveRowsDown(size_t Row, size_t NumRows) {
+    for (size_t Col = 0; Col < g_MaxGridCols; ++Col) {
+        m_Grid[Row + NumRows][Col] = m_Grid[Row][Col];
+        m_Grid[Row][Col] = Cell{false, ColorHandler::Get(TETRIS_DARK_GRAY)};
+    }
+} 
+
+bool Grid::IsRowFull(size_t Row) {
+    for (size_t Col = 0; Col < g_MaxGridCols; ++Col)
+        if (!m_Grid[Row][Col].IsActive) return false;
+    return true;
 }
