@@ -1,5 +1,9 @@
 #include "TetrisGame.h"
 
+#include <array>
+
+// Public Methods
+
 TetrisGame::TetrisGame()
     : m_Grid()
     , m_Blocks(GetAllBlocks())
@@ -17,18 +21,38 @@ void TetrisGame::HandleInput() {
     switch(GetKeyPressed()) {
     case KEY_LEFT:
         m_CurrentBlock.Move(0,-1);
+        if (IsBlockOutside()) m_CurrentBlock.Move(0,1);
         break;
     case KEY_RIGHT:
         m_CurrentBlock.Move(0,1);
+        if (IsBlockOutside()) m_CurrentBlock.Move(0,-1);
         break;
     case KEY_DOWN:
-        m_CurrentBlock.Move(1,0);
+        MoveBlockDown();
         break;
+    case KEY_UP:
+        m_CurrentBlock.RotateClockwise();
+        if (IsBlockOutside()) m_CurrentBlock.RotateCounterClockwise();
     }
 }
 
+
+void TetrisGame::MoveBlockDown() {
+    m_CurrentBlock.Move(1,0);
+    if (IsBlockOutside()) m_CurrentBlock.Move(-1,0);
+}
+
+void TetrisGame::LockBlock() {
+    std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();
+    for (const Position& Pos : ActiveTiles)
+        m_Grid.SetCell(Pos.Row, Pos.Col, m_CurrentBlock.Color);
+    m_CurrentBlock = m_NextBlock;
+    m_NextBlock = GetRandomBlock();
+}
+
 std::vector<Block> TetrisGame::GetAllBlocks() {
-    return { IBlock(), SBlock(), ZBlock(), TBlock(), LBlock(), JBlock(), OBlock() };
+    return { IBlock(), SBlock(), ZBlock(), TBlock(), 
+             LBlock(), JBlock(), OBlock() };
 }
 
 Block TetrisGame::GetRandomBlock() {
@@ -37,4 +61,14 @@ Block TetrisGame::GetRandomBlock() {
     Block SelectedBlock = m_Blocks[Index];
     m_Blocks.erase(m_Blocks.begin() + Index);
     return SelectedBlock; 
+}
+
+// Private Methods
+
+bool TetrisGame::IsBlockOutside()  {
+    std::array<Position, g_PositionCount> ActiveTiles = m_CurrentBlock.GetCellPositions();
+    for (Position Pos : ActiveTiles)
+        if (m_Grid.IsCellOutside(Pos.Row, Pos.Col)) 
+            return true;
+    return false;
 }
