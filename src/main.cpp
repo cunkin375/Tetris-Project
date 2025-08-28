@@ -3,19 +3,16 @@
 
 #include <raylib.h>
 
-#define SCREEN_WIDTH 300 
-#define SCREEN_HEIGHT 600
-
 int main() {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib Tetris"); 
+    InitWindow(300, 600, "raylib Tetris"); 
     SetTargetFPS(144);
-    Color BackgroundColor = ColorHandler::Get(DarkBlue);
+    Color BackgroundColor = ColorHandler::Get(TETRIS_DARK_BLUE);
     TetrisGame Game; 
     while (!WindowShouldClose()) {
         BeginDrawing();
             Game.HandleInput();
             ClearBackground(BackgroundColor);
-            Game.Draw();
+            Game.Update();
         EndDrawing(); 
     }
     CloseWindow();
