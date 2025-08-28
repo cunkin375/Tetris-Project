@@ -8,7 +8,7 @@
 
 
 struct Cell {
-    uint32_t Value;
+    bool IsActive;
     Color Color;
 };
 
@@ -18,8 +18,10 @@ public:
     Grid();
     void Print();
     void Draw();
+    bool IsCellOutside(size_t Row, size_t Col);
     
-    Cell GetCell(size_t Row, size_t Col) const { return m_Grid[Row][Col]; }
+    inline void SetCell(size_t Row, size_t Col, Color Color) { m_Grid[Row][Col] = Cell{true, Color}; }
+    inline Cell GetCell(size_t Row, size_t Col) const { return m_Grid[Row][Col]; }
 
 private:
     void Initialize();
