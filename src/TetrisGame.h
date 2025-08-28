@@ -17,7 +17,7 @@ class TetrisGame {
 public: 
     TetrisGame();
 
-    void Draw();
+    void Update();
     void HandleInput();
 
     std::vector<Block> GetAllBlocks();
