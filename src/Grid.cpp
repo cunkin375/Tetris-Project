@@ -20,15 +20,14 @@ void Grid::Print() {
         std::cout << std::endl;
     }
 }
+
 void Grid::ClearFullRows() { size_t FullRowCount = 0;
     for (int32_t Row = g_MaxGridRows - 1; Row >= 0; --Row) {
         if (IsRowFull(Row)) {
             ClearRow(Row);
             ++FullRowCount;
-        } else if (FullRowCount > 0) {
+        } else if (FullRowCount > 0)
             MoveRowsDown(Row, FullRowCount);
-            Row += FullRowCount; // Recheck this row after moving down
-        }
     }
 }
 

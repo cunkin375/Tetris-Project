@@ -35,6 +35,7 @@ std::array<Position, g_PositionCount> Block::GetCellPositions() {
     std::array<Position, g_PositionCount> ActiveTiles = CellPositions[m_RotationState];
     std::array<Position, g_PositionCount> NewTiles;
     for (size_t i = 0; i < g_PositionCount; ++i)
-        NewTiles[i] = Position(ActiveTiles[i].Row + m_RowOffset, ActiveTiles[i].Col + m_ColOffset);
+        NewTiles[i] = Position(ActiveTiles[i].Row + m_RowOffset,
+                               ActiveTiles[i].Col + m_ColOffset);
     return NewTiles;
 }
