@@ -19,6 +19,18 @@ void Block::Move(int32_t RowOffset, int32_t ColOffset) {
     m_ColOffset += ColOffset;
 }
 
+// RotateClockwise and RotateCounterClockwise:
+// Mod 4 to cycle through 0-3
+
+void Block::RotateClockwise() {
+    m_RotationState = (m_RotationState + 1) % 4;
+}
+
+void Block::RotateCounterClockwise() {
+    m_RotationState = (m_RotationState + 3) % 4;
+}
+
+
 std::array<Position, g_PositionCount> Block::GetCellPositions() {
     std::array<Position, g_PositionCount> ActiveTiles = CellPositions[m_RotationState];
     std::array<Position, g_PositionCount> NewTiles;

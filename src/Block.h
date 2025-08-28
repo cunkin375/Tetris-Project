@@ -23,6 +23,8 @@ public:
     
     void Draw();
     void Move(int32_t RowOffset, int32_t ColOffset);
+    void RotateClockwise();
+    void RotateCounterClockwise();
     
     std::array<Position, g_PositionCount> GetCellPositions();
 
@@ -41,11 +43,12 @@ private:
 class IBlock : public Block {
 public:
     IBlock() {
-        Color = ColorHandler::Get(Cyan);
+        Color = ColorHandler::Get(TETRIS_CYAN);
+        // Rotation states
         CellPositions[0] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{1,3} };
         CellPositions[1] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
-        CellPositions[2] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
         CellPositions[3] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{1,3} };
+        CellPositions[2] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
         // Initial position adjustment
         Move(-1,3);
     }
@@ -54,7 +57,8 @@ public:
 class SBlock : public Block {
 public:
     SBlock() {
-        Color = ColorHandler::Get(Green);
+        Color = ColorHandler::Get(TETRIS_GREEN);
+        // Rotation states
         CellPositions[0] = { Position{0,1}, Position{0,2}, Position{1,0}, Position{1,1} };
         CellPositions[1] = { Position{0,1}, Position{1,1}, Position{1,2}, Position{2,2} };
         CellPositions[2] = { Position{0,1}, Position{0,2}, Position{1,0}, Position{1,1} };
@@ -67,7 +71,8 @@ public:
 class ZBlock : public Block {
 public:
     ZBlock() {
-        Color = ColorHandler::Get(Red);
+        Color = ColorHandler::Get(TETRIS_RED);
+        // Rotation states
         CellPositions[0] = { Position{0,0}, Position{0,1}, Position{1,1}, Position{1,2} };
         CellPositions[1] = { Position{0,2}, Position{1,1}, Position{1,2}, Position{2,1} };
         CellPositions[2] = { Position{0,0}, Position{0,1}, Position{1,1}, Position{1,2} };
@@ -80,7 +85,8 @@ public:
 class TBlock : public Block {
 public:
     TBlock() {
-        Color = ColorHandler::Get(Purple);
+        Color = ColorHandler::Get(TETRIS_PURPLE);
+        // Rotation states
         CellPositions[0] = { Position{0,1}, Position{1,0}, Position{1,1}, Position{1,2} };
         CellPositions[1] = { Position{0,1}, Position{1,1}, Position{1,2}, Position{2,1} };
         CellPositions[2] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{2,1} };
@@ -93,7 +99,8 @@ public:
 class LBlock : public Block {
 public:
     LBlock() {
-        Color = ColorHandler::Get(Blue);
+        Color = ColorHandler::Get(TETRIS_BLUE);
+        // Rotation states
         CellPositions[0] = { Position{0,2}, Position{1,0}, Position{1,1}, Position{1,2} };
         CellPositions[1] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{2,2} };
         CellPositions[2] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{2,0} };
@@ -106,7 +113,8 @@ public:
 class JBlock : public Block {
 public:
     JBlock() {
-        Color = ColorHandler::Get(Orange);
+        Color = ColorHandler::Get(TETRIS_ORANGE);
+        // Rotation states
         CellPositions[0] = { Position{0,0}, Position{1,0}, Position{1,1}, Position{1,2} };
         CellPositions[1] = { Position{0,1}, Position{0,2}, Position{1,1}, Position{2,1} };
         CellPositions[2] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{2,2} };
@@ -119,7 +127,8 @@ public:
 class OBlock : public Block {
 public:
     OBlock() {
-        Color = ColorHandler::Get(Yellow);
+        Color = ColorHandler::Get(TETRIS_YELLOW);
+        // Rotation states
         CellPositions[0] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
         CellPositions[1] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
         CellPositions[2] = { Position{0,0}, Position{0,1}, Position{1,0}, Position{1,1} };
