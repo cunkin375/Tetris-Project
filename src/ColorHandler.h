@@ -13,8 +13,7 @@ enum Colors {
     TETRIS_BLUE
 };
 
-class ColorHandler {
-public:
+namespace ColorHandler {
     static inline Color Get(Colors color) {
         switch (color) {
         case TETRIS_DARK_GRAY: return { 26,  31,  40, 255};
@@ -26,7 +25,7 @@ public:
         case TETRIS_PURPLE:    return {160,  32, 240, 255};
         case TETRIS_CYAN:      return {  0, 255, 255, 255};
         case TETRIS_BLUE:      return {  0,   0, 255, 255};
-        default:               return {255, 255, 255, 255};
+        default: /* White */   return {255, 255, 255, 255};
         } 
     } 
-};
+}
