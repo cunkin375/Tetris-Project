@@ -4,7 +4,7 @@
 #include <raylib.h>
 
 int main() {
-    InitWindow(300, 600, "raylib Tetris"); 
+    InitWindow(500, 620, "Raylib Tetris"); 
     SetTargetFPS(144);
     Color BackgroundColor = ColorHandler::Get(TETRIS_DARK_BLUE);
     TetrisGame Game; 
