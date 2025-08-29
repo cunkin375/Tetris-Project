@@ -5,7 +5,9 @@
 // Public Methods
 
 TetrisGame::TetrisGame()
-    : m_LastUpdateTime(0.0)
+    : m_GameOver(false)
+    , m_Paused(false)
+    , m_LastUpdateTime(0.0)
     , m_Grid()
     , m_Blocks(GetAllBlocks())
 {
@@ -16,6 +18,15 @@ TetrisGame::TetrisGame()
 void TetrisGame::Update() { 
     m_Grid.Draw();
     m_CurrentBlock.Draw();
+}
+
+bool TetrisGame::EventTriggered(double_t Interval) {
+    double_t CurrentTime = GetTime();
+    if (CurrentTime - m_LastUpdateTime >= Interval) {
+        m_LastUpdateTime = CurrentTime;
+        return true;
+    } 
+    return false;
 }
 
 void TetrisGame::HandleInput() {
@@ -34,17 +45,13 @@ void TetrisGame::HandleInput() {
     case KEY_UP:
         m_CurrentBlock.RotateClockwise();
         if (IsBlockOutside() || !BlockFits()) m_CurrentBlock.RotateCounterClockwise();
+        break;
+    case KEY_SPACE:
+        PlaceBlockDown();
+        break;
     }
 }
 
-bool TetrisGame::EventTriggered(double_t Interval) {
-    double_t CurrentTime = GetTime();
-    if (CurrentTime - m_LastUpdateTime >= Interval) {
-        m_LastUpdateTime = CurrentTime;
-        return true;
-    } 
-    return false;
-}
 
 void TetrisGame::MoveBlockDown() {
     m_CurrentBlock.Move(1,0);
@@ -55,6 +62,23 @@ void TetrisGame::MoveBlockDown() {
     }
 }
 
+void TetrisGame::PlaceBlockDown() {
+    while (!IsBlockOutside() && BlockFits()) m_CurrentBlock.Move(1,0);
+    m_CurrentBlock.Move(-1,0);
+    LockBlock();
+    m_Grid.ClearFullRows();
+}
+
+void TetrisGame::ResetGame() {
+    m_GameOver = false;
+    m_Paused = false;
+    m_Grid = Grid();
+    m_Blocks = GetAllBlocks();
+    m_CurrentBlock = GetRandomBlock();
+    m_NextBlock = GetRandomBlock();
+}
+
+
 // Private Methods
 
 void TetrisGame::LockBlock() {
@@ -62,6 +86,11 @@ void TetrisGame::LockBlock() {
     for (const Position& Pos : ActiveTiles)
         m_Grid.SetCell(Pos.Row, Pos.Col, m_CurrentBlock.Color);
     m_CurrentBlock = m_NextBlock;
+    // Game Over
+    if (!BlockFits()) {
+        EndGame();
+        Pause();
+    } else
     m_NextBlock = GetRandomBlock();
 }
 
@@ -82,8 +111,7 @@ bool TetrisGame::IsBlockOutside()  {
 }
 
 std::vector<Block> TetrisGame::GetAllBlocks() {
-    return { IBlock(), SBlock(), ZBlock(), TBlock(), 
-             LBlock(), JBlock(), OBlock() };
+    return { IBlock(), SBlock(), ZBlock(), TBlock(), LBlock(), JBlock(), OBlock() };
 }
 
 Block TetrisGame::GetRandomBlock() {
