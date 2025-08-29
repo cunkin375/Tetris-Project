@@ -10,8 +10,8 @@ Block::Block()
 void Block::Draw() {
     std::array<Position, g_PositionCount> CurrentPositions = GetCellPositions(); 
     for(const Position& Pos : CurrentPositions)
-        DrawRectangle(Pos.Col * g_CellSize + 1, Pos.Row * g_CellSize + 1,
-                      g_CellSize - 1, g_CellSize - 1, Color);
+        DrawRectangle(Pos.Col * g_CellSize + g_CellOffset, Pos.Row * g_CellSize + g_CellOffset,
+                      g_CellSize - g_CellSplit, g_CellSize - g_CellSplit, Color);
 }
 
 void Block::Move(int32_t RowOffset, int32_t ColOffset) {
@@ -21,7 +21,6 @@ void Block::Move(int32_t RowOffset, int32_t ColOffset) {
 
 // RotateClockwise and RotateCounterClockwise:
 // Mod 4 to cycle through 0-3
-
 void Block::RotateClockwise() {
     m_RotationState = (m_RotationState + 1) % 4;
 }
