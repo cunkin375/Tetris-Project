@@ -47,8 +47,8 @@ public:
         // Rotation states
         CellPositions[0] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{1,3} };
         CellPositions[1] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
-        CellPositions[3] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{1,3} };
-        CellPositions[2] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
+        CellPositions[2] = { Position{1,0}, Position{1,1}, Position{1,2}, Position{1,3} };
+        CellPositions[3] = { Position{0,1}, Position{1,1}, Position{2,1}, Position{3,1} };
         // Initial position adjustment
         Move(-1,3);
     }
