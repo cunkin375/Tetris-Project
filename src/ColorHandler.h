@@ -15,8 +15,8 @@ enum Colors {
 };
 
 namespace ColorHandler {
-    static inline Color Get(Colors color) {
-        switch (color) {
+    static inline Color Get(Colors Color) {
+        switch (Color) {
         case TETRIS_DARK_GRAY: return { 26,  31,  40, 255};
         case TETRIS_DARK_BLUE: return { 44,  44, 127, 255};
         case TETRIS_GREEN:     return { 47, 250,  23, 255};
