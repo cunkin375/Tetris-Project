@@ -20,9 +20,11 @@ set(HEADER_FILES
 
 set(SOURCE_FILES
     main.cpp
+    Application.cpp
     Block.cpp
     Grid.cpp
-    TetrisGame.cpp)
+    TetrisGame.cpp
+    Window.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
