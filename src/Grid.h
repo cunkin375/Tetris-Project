@@ -2,7 +2,6 @@
 
 #include "Constants.h"
 
-#include <cstdint>
 #include <vector>
 #include <raylib.h>
 
