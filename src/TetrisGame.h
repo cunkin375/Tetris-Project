@@ -17,7 +17,7 @@ class TetrisGame {
 public: 
     TetrisGame();
 
-    void Update();
+    void Render();
     void MoveBlockDown();
     void PlaceBlockDown();
     void HandleInput();

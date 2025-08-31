@@ -15,7 +15,7 @@ TetrisGame::TetrisGame()
     m_NextBlock = GetRandomBlock();
 }
 
-void TetrisGame::Update() { 
+void TetrisGame::Render() { 
     m_Grid.Draw();
     m_CurrentBlock.Draw();
 }
