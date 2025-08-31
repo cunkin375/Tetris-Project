@@ -12,7 +12,7 @@
 struct Position {
     uint32_t Row;
     uint32_t Col;
-    Position() : Row(0), Col(0) {} // Default constructor
+    Position() : Row(0), Col(0) {}
     Position(uint32_t Row, uint32_t Col) : Row(Row), Col(Col) {}
 };
 
