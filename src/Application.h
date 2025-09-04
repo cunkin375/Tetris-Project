@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Window.h"
-#include "TetrisGame.h"
+#include "util/Window.h"
+#include "game/TetrisGame.h"
 #include <memory>
 
 class Application {

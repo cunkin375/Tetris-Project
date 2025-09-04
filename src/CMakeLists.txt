@@ -11,21 +11,20 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 set(HEADER_FILES
-    Block.h
-    ColorHandler.h
-    Defaults.h
-    Grid.h
-    Position.h
-    TetrisGame.h
-    Window.h)
+    game/Block.h
+    game/Grid.h
+    game/TetrisGame.h
+    util/ColorHandler.h
+    util/Constants.h
+    util/Window.h)
 
 set(SOURCE_FILES
     main.cpp
     Application.cpp
-    Block.cpp
-    Grid.cpp
-    TetrisGame.cpp
-    Window.cpp)
+    game/Block.cpp
+    game/Grid.cpp
+    game/TetrisGame.cpp
+    util/Window.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 

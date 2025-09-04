@@ -1,5 +1,5 @@
 #include "Grid.h"
-#include "ColorHandler.h"
+#include "util/ColorHandler.h"
 #include <iostream>
 
 // Public Methods

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Constants.h"
-#include "ColorHandler.h"
+#include "util/Constants.h"
+#include "util/ColorHandler.h"
 
 #include <raylib.h>
 #include <stdint.h>
