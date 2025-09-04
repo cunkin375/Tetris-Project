@@ -2,6 +2,7 @@
 
 #include "Window.h"
 #include "TetrisGame.h"
+#include <memory>
 
 class Application {
 public:

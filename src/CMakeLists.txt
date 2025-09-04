@@ -16,7 +16,8 @@ set(HEADER_FILES
     Defaults.h
     Grid.h
     Position.h
-    TetrisGame.h)
+    TetrisGame.h
+    Window.h)
 
 set(SOURCE_FILES
     main.cpp

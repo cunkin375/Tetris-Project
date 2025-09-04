@@ -1,5 +1,7 @@
 #pragma once
 
+#include <stdint.h>
+
 constexpr size_t g_MaxGridRows = 20;
 constexpr size_t g_MaxGridCols = 10;
 constexpr size_t g_CellSize = 30;
@@ -12,7 +14,7 @@ constexpr size_t g_PositionCount = 4;
 constexpr uint32_t InitWindowWidth = 500;
 constexpr uint32_t InitWindowHeight = 620;
 constexpr uint32_t TargetFPS = 144;
-constexpr double_t EventWindowMS = 0.5;
+constexpr double EventWindowMS = 0.5;
 
 // Game Over Message 
 // Move to window class

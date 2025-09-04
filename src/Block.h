@@ -4,7 +4,7 @@
 #include "ColorHandler.h"
 
 #include <raylib.h>
-#include <memory>
+#include <stdint.h>
 #include <array>
 #include <map>
 

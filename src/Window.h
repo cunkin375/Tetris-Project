@@ -22,13 +22,14 @@ struct WindowProperties {
 class Window {
 public:
     Window();
-    ~Window();
 
     void Clear();
     void Draw();
+    void DrawGameOverScreen();
     void Close();
-    bool ShouldClose() const;
+    bool ShouldClose();
 
 private:
+    WindowProperties m_Handle;
 
 };
